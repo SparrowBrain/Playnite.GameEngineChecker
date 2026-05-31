@@ -13,6 +13,7 @@ namespace GameEngineChecker.Services
 {
 	public class PcGamingWikiClient : IPcGamingWikiClient, IDisposable
 	{
+		private const string UserAgent = "Playnite.GameEngineChecker Extension v3.0.0 (https://github.com/SparrowBrain/Playnite.GameEngineChecker)";
 		private readonly IPlayniteAPI _api;
 		private readonly ILogger _logger = LogManager.GetLogger();
 		private readonly HttpClient _httpClient;
@@ -28,7 +29,7 @@ namespace GameEngineChecker.Services
 			try
 			{
 				var request = new HttpRequestMessage(HttpMethod.Get, link);
-				request.Headers.TryAddWithoutValidation("User-Agent", "Playnite.GameEngineChecker Extension 3.x (https://github.com/darklinkpower/PlayniteExtensionsCollection/)");
+				request.Headers.TryAddWithoutValidation("User-Agent", UserAgent);
 
 				var response = await _httpClient.SendAsync(request, cancellationToken);
 				var responseString = await response.Content.ReadAsStringAsync();

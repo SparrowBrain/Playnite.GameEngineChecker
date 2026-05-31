@@ -3,9 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.37111.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameEngineChecker", ".\GameEngineChecker\GameEngineChecker.csproj", "{CA1D0577-BE3D-422D-808F-262D77A627DF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameEngineChecker", "GameEngineChecker\GameEngineChecker.csproj", "{CA1D0577-BE3D-422D-808F-262D77A627DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameEngineChecker.UnitTests", ".\GameEngineChecker.UnitTests\GameEngineChecker.UnitTests.csproj", "{AC1FED92-44D4-4527-8DE9-AF4120DB3EF1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameEngineChecker.UnitTests", "GameEngineChecker.UnitTests\GameEngineChecker.UnitTests.csproj", "{AC1FED92-44D4-4527-8DE9-AF4120DB3EF1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ci", "ci", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		ci\Changelog.txt = ci\Changelog.txt
+		ci\installer_manifest.yaml = ci\installer_manifest.yaml
+		ci\release.bat = ci\release.bat
+		ci\Release.md = ci\Release.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

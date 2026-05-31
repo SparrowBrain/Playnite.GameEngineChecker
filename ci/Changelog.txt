@@ -1,0 +1,9 @@
+-----------------v3.0.0
+- Full re-write in C#
+- Not calling Steam API for now
+- Added processing games based on Steam link
+- Added processing games based on Wikipedia link
+- Added rate limiting to conform to PcGamingWiki rate limits
+- Added an optional progress window
+- Moved messages from message box to notifications
+------ Should we filter for PC games????????????
