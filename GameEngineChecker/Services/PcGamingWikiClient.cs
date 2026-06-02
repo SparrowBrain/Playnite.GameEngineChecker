@@ -13,7 +13,7 @@ namespace GameEngineChecker.Services
 {
 	public class PcGamingWikiClient : IPcGamingWikiClient, IDisposable
 	{
-		private const string UserAgent = "Playnite.GameEngineChecker Extension v3.0.0 (https://github.com/SparrowBrain/Playnite.GameEngineChecker)";
+		private static readonly string UserAgent = $"Playnite.GameEngineChecker Extension {UserAgentConstants.Version} (https://github.com/SparrowBrain/Playnite.GameEngineChecker)";
 		private readonly IPlayniteAPI _api;
 		private readonly ILogger _logger = LogManager.GetLogger();
 		private readonly HttpClient _httpClient;

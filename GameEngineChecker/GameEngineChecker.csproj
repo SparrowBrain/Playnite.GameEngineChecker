@@ -69,6 +69,7 @@
     <Compile Include="Services\PcGamingWikiLinkProvider.cs" />
     <Compile Include="Services\RateLimiter.cs" />
     <Compile Include="Services\Tagger.cs" />
+    <Compile Include="UserAgentConstants.cs" />
     <Compile Include="ViewModels\ProgressViewModel.cs" />
     <Compile Include="Views\ProgressView.xaml.cs">
       <DependentUpon>ProgressView.xaml</DependentUpon>
