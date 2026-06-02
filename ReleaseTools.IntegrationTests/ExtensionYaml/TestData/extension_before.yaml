@@ -1,12 +1,12 @@
-﻿Id: SparrowBrain_GGDeals
-Name: Play Next
+﻿Id: SparrowBrain_YearInReview
+Name: Year In Review
 Author: SparrowBrain
 Version: 1.0.1
-Module: GGDeals.dll
+Module: YearInReview.dll
 Type: GenericPlugin
 Icon: icon.png
 Links:
     - Name: GitHub
-      Url: https://github.com/SparrowBrain/Playnite.GGDeals
+      Url: https://github.com/SparrowBrain/Playnite.YearInReview
     - Name: Translate
-      Url: https://crowdin.com/project/sparrowbrain-playnite-ggdeals
+      Url: https://crowdin.com/project/sparrowbrain-playnite-year-in-review

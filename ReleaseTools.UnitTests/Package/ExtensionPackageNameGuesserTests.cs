@@ -7,8 +7,8 @@ namespace ReleaseTools.UnitTests.Package
     public class ExtensionPackageNameGuesserTests
     {
         [Theory]
-        [InlineAutoData("1.1.0", "SparrowBrain_GGDeals_1_1_0.pext")]
-        [InlineAutoData("20.30.404", "SparrowBrain_GGDeals_20_30_404.pext")]
+        [InlineAutoData("1.1.0", "SparrowBrain_YearInReview_1_1_0.pext")]
+        [InlineAutoData("20.30.404", "SparrowBrain_YearInReview_20_30_404.pext")]
         public void GetName_ProviderNameWithinConvention(
             string version,
             string expected,

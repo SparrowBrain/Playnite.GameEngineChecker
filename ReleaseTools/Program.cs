@@ -21,7 +21,7 @@ namespace ReleaseTools
             var pathToSolution = "..";
 
             var msBuild = @"""C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe""";
-            var testRunner = $@"""{pathToSolution}\packages\xunit.runner.console.2.9.0\tools\net462\xunit.console.exe""";
+            var testRunner = $@"""{pathToSolution}\packages\xunit.runner.console.2.9.2\tools\net462\xunit.console.exe""";
             var toolbox = @"""C:\Users\Qwx\AppData\Local\Playnite\Toolbox.exe""";
 
             await EnsureGitHubAuthentication();
@@ -56,11 +56,11 @@ namespace ReleaseTools
             p.StartInfo.UseShellExecute = false;
             p.StartInfo.RedirectStandardError = true;
             p.StartInfo.RedirectStandardOutput = true;
-            p.StartInfo.FileName = "gh";
+			p.StartInfo.FileName = "gh";
             p.StartInfo.Arguments = "auth status";
             p.Start();
-            var output = await p.StandardOutput.ReadToEndAsync();
-            p.WaitForExit();
+			var output = await p.StandardOutput.ReadToEndAsync();
+			p.WaitForExit();
 
             if (!authStatusParser.IsUserLoggedIn(output))
             {
@@ -113,13 +113,13 @@ namespace ReleaseTools
         private static void UpdateExtensionManifest(string pathToSolution, ChangelogEntry changeEntry)
         {
             var extensionYamlUpdater = new ExtensionYamlUpdater();
-            extensionYamlUpdater.Update(Path.Combine(pathToSolution, @"GGDeals\extension.yaml"), changeEntry.Version);
+            extensionYamlUpdater.Update(Path.Combine(pathToSolution, @"YearInReview\extension.yaml"), changeEntry.Version);
         }
 
         private static string Build(string msBuild, string pathToSolution)
         {
-            RunCommand(msBuild, $"{Path.Combine(pathToSolution, "GGDeals.sln")} -property:Configuration=Release");
-            return Path.Combine(pathToSolution, "GGDeals", "bin", "Release");
+            RunCommand(msBuild, $"{Path.Combine(pathToSolution, "YearInReview.sln")} -property:Configuration=Release");
+            return Path.Combine(pathToSolution, "YearInReview", "bin", "Release");
         }
 
         private static void RunTests(string testRunner, string pathToSolution)
@@ -156,7 +156,7 @@ namespace ReleaseTools
         private static void UpdateInstallerManifest(string pathToSolution, ExtensionPackageNameGuesser extensionPackageNameGuesser, ChangelogEntry changeEntry)
         {
             var installerManifestUpdater = new InstallerManifestUpdater();
-            var playniteSdkVersionParser = new PlayniteSdkVersionParser(Path.Combine(pathToSolution, @"GGDeals\GGDeals.csproj"));
+            var playniteSdkVersionParser = new PlayniteSdkVersionParser(Path.Combine(pathToSolution, @"YearInReview\YearInReview.csproj"));
             var dateTimeProvider = new DateTimeProvider();
             var installerManifestEntryGenerator = new InstallerManifestEntryGenerator(playniteSdkVersionParser, dateTimeProvider, extensionPackageNameGuesser);
 

@@ -26,7 +26,7 @@ namespace ReleaseTools.InstallerManifestYaml
             builder.AppendLine($"  - Version: {changelogEntry.Version}");
             builder.AppendLine($"    RequiredApiVersion: {apiVersion}");
             builder.AppendLine($"    ReleaseDate: {_dateTimeProvider.Now:yyyy-MM-dd}");
-            builder.AppendLine($"    PackageUrl: https://github.com/SparrowBrain/Playnite.GGDeals/releases/download/v{changelogEntry.Version}/{packageName}");
+            builder.AppendLine($"    PackageUrl: https://github.com/SparrowBrain/Playnite.YearInReview/releases/download/v{changelogEntry.Version}/{packageName}");
             builder.AppendLine($"    Changelog:");
             foreach (var change in changelogEntry.Changes)
             {
