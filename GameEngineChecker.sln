@@ -23,6 +23,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReleaseTools.UnitTests", "R
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTools.Shared", "TestTools.Shared\TestTools.Shared.csproj", "{C19ED708-9B00-48A6-8458-DC3BB109DA7C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{488FC0FC-9334-496D-AE99-31279A585D81}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		crowdin.yml = crowdin.yml
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{363BADF7-57C3-4FE4-94D2-C5F5A76EE014}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\crowdin.yml = .github\workflows\crowdin.yml
+		.github\workflows\tests.yml = .github\workflows\tests.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

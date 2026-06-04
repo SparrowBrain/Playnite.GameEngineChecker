@@ -8,3 +8,5 @@ Icon: icon.jpg
 Links:
     - Name: GitHub
       Url: https://github.com/SparrowBrain/Playnite.GameEngineChecker
+    - Name: Translate
+      Url: https://crowdin.com/project/playnite-game-engine-checker
