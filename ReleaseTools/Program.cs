@@ -10,6 +10,7 @@ using ReleaseTools.ExtensionYaml;
 using ReleaseTools.GitHubTools;
 using ReleaseTools.InstallerManifestYaml;
 using ReleaseTools.Package;
+using ReleaseTools.UserAgent;
 
 namespace ReleaseTools
 {
@@ -21,7 +22,7 @@ namespace ReleaseTools
             var pathToSolution = "..";
 
             var msBuild = @"""C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe""";
-            var testRunner = $@"""{pathToSolution}\packages\xunit.runner.console.2.9.2\tools\net462\xunit.console.exe""";
+            var testRunner = $@"""{pathToSolution}\packages\xunit.runner.console.2.9.3\tools\net462\xunit.console.exe""";
             var toolbox = @"""C:\Users\Qwx\AppData\Local\Playnite\Toolbox.exe""";
 
             await EnsureGitHubAuthentication();
@@ -36,12 +37,13 @@ namespace ReleaseTools
             var releasePackage = CreateReleasePackagePath(extensionPackageNameGuesser, changeEntry, releaseArtifactsDir);
 
             UpdateExtensionManifest(pathToSolution, changeEntry);
+            UpdateUserAgent(pathToSolution, changeEntry);
 
             var addonBuildDir = Build(msBuild, pathToSolution);
             RunTests(testRunner, pathToSolution);
             PackageExtension(toolbox, addonBuildDir, releaseArtifactsDir);
 
-            CommitAndPush($@"v{changeEntry.Version} extension.yaml update");
+            CommitAndPush($@"v{changeEntry.Version} extension.yaml and user-agent update");
 
             CreateRelease(changeEntry, releaseChangelog, releasePackage);
 
@@ -113,13 +115,19 @@ namespace ReleaseTools
         private static void UpdateExtensionManifest(string pathToSolution, ChangelogEntry changeEntry)
         {
             var extensionYamlUpdater = new ExtensionYamlUpdater();
-            extensionYamlUpdater.Update(Path.Combine(pathToSolution, @"YearInReview\extension.yaml"), changeEntry.Version);
+            extensionYamlUpdater.Update(Path.Combine(pathToSolution, @"GameEngineChecker\extension.yaml"), changeEntry.Version);
         }
 
-        private static string Build(string msBuild, string pathToSolution)
+        private static void UpdateUserAgent(string pathToSolution, ChangelogEntry changeEntry)
         {
-            RunCommand(msBuild, $"{Path.Combine(pathToSolution, "YearInReview.sln")} -property:Configuration=Release");
-            return Path.Combine(pathToSolution, "YearInReview", "bin", "Release");
+	        var extensionYamlUpdater = new UserAgentUpdater();
+	        extensionYamlUpdater.Update(Path.Combine(pathToSolution, @"GameEngineChecker\UserAgentConstants.cs"), changeEntry.Version);
+        }
+
+		private static string Build(string msBuild, string pathToSolution)
+        {
+            RunCommand(msBuild, $"{Path.Combine(pathToSolution, "GameEngineChecker.sln")} -property:Configuration=Release");
+            return Path.Combine(pathToSolution, "GameEngineChecker", "bin", "Release");
         }
 
         private static void RunTests(string testRunner, string pathToSolution)
@@ -156,7 +164,7 @@ namespace ReleaseTools
         private static void UpdateInstallerManifest(string pathToSolution, ExtensionPackageNameGuesser extensionPackageNameGuesser, ChangelogEntry changeEntry)
         {
             var installerManifestUpdater = new InstallerManifestUpdater();
-            var playniteSdkVersionParser = new PlayniteSdkVersionParser(Path.Combine(pathToSolution, @"YearInReview\YearInReview.csproj"));
+            var playniteSdkVersionParser = new PlayniteSdkVersionParser(Path.Combine(pathToSolution, @"GameEngineChecker\GameEngineChecker.csproj"));
             var dateTimeProvider = new DateTimeProvider();
             var installerManifestEntryGenerator = new InstallerManifestEntryGenerator(playniteSdkVersionParser, dateTimeProvider, extensionPackageNameGuesser);
 

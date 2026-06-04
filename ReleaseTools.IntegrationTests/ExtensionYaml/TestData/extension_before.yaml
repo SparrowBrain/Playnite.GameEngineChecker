@@ -1,12 +1,10 @@
-﻿Id: SparrowBrain_YearInReview
-Name: Year In Review
+﻿Id: Game_Engine_Checker_7a21243e-c7cc-4ca7-85bd-f6f96f22e9db
+Name: Game Engine Checker
 Author: SparrowBrain
-Version: 1.0.1
-Module: YearInReview.dll
+Version: 3.0
+Module: GameEngineChecker.dll
 Type: GenericPlugin
-Icon: icon.png
+Icon: icon.jpg
 Links:
     - Name: GitHub
-      Url: https://github.com/SparrowBrain/Playnite.YearInReview
-    - Name: Translate
-      Url: https://crowdin.com/project/sparrowbrain-playnite-year-in-review
+      Url: https://github.com/SparrowBrain/Playnite.GameEngineChecker

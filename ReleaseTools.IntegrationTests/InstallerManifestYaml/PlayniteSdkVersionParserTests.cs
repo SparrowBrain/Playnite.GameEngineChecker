@@ -5,7 +5,7 @@ namespace ReleaseTools.IntegrationTests.InstallerManifestYaml
 {
     public class PlayniteSdkVersionParserTests
     {
-        private const string ProjectFile = @"InstallerManifestYaml\TestData\YearInReview.csproj";
+        private const string ProjectFile = @"InstallerManifestYaml\TestData\GameEngineChecker.csproj";
 
         [Fact]
         public void GetVersion_ReturnsVersionFromProjectFile()

@@ -5,7 +5,7 @@
         public string GetName(string version)
         {
             var versionNumbers = version.Split('.');
-            return $"SparrowBrain_YearInReview_{versionNumbers[0]}_{versionNumbers[1]}_{versionNumbers[2]}.pext";
+            return $"SparrowBrain_GameEngineChecker_{versionNumbers[0]}_{versionNumbers[1]}_{versionNumbers[2]}.pext";
         }
     }
 }

@@ -28,7 +28,7 @@ namespace ReleaseTools.IntegrationTests.InstallerManifestYaml
             var manifestEntry = @"  - Version: 2.3.4
     RequiredApiVersion: 9.8.7
     ReleaseDate: 2020-03-24
-    PackageUrl: https://github.com/SparrowBrain/Playnite.YearInReview/releases/download/v2.3.4/SparrowBrain_YearInReview_2_3_4.pext
+    PackageUrl: https://github.com/SparrowBrain/Playnite.GameEngineChecker/releases/download/v2.3.4/SparrowBrain_GameEngineChecker_2_3_4.pext
     Changelog:
       - Change 1
       - Change 2
