@@ -28,7 +28,7 @@ jobs:
     - name: Run xUnit # very fragile
       run: > 
         ${{ github.workspace }}\${{ env.XUNIT_PATH }} 
-        # ${{ github.workspace }}\GameEngineChecker.IntegrationTests\bin\Release\GameEngineChecker.IntegrationTests.dll 
+        ${{ github.workspace }}\GameEngineChecker.IntegrationTests\bin\Release\GameEngineChecker.IntegrationTests.dll 
         ${{ github.workspace }}\GameEngineChecker.UnitTests\bin\Release\GameEngineChecker.UnitTests.dll         
         ${{ github.workspace }}\ReleaseTools.IntegrationTests\bin\Release\ReleaseTools.IntegrationTests.dll 
         ${{ github.workspace }}\ReleaseTools.UnitTests\bin\Release\ReleaseTools.UnitTests.dll 

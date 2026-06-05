@@ -36,6 +36,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\tests.yml = .github\workflows\tests.yml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameEngineChecker.IntegrationTests", "GameEngineChecker.IntegrationTests\GameEngineChecker.IntegrationTests.csproj", "{34C177D3-1EB8-472B-93EB-F92907B2520F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,6 +68,10 @@ Global
 		{C19ED708-9B00-48A6-8458-DC3BB109DA7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C19ED708-9B00-48A6-8458-DC3BB109DA7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C19ED708-9B00-48A6-8458-DC3BB109DA7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34C177D3-1EB8-472B-93EB-F92907B2520F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34C177D3-1EB8-472B-93EB-F92907B2520F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34C177D3-1EB8-472B-93EB-F92907B2520F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34C177D3-1EB8-472B-93EB-F92907B2520F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
