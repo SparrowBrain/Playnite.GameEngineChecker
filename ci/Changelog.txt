@@ -6,4 +6,3 @@
 - Added rate limiting to conform to PcGamingWiki rate limits
 - Added an optional progress window
 - Moved messages from message box to notifications
------- Should we filter for PC games????????????

@@ -47,7 +47,7 @@ namespace GameEngineChecker.Tests
 
 		public void Clear()
 		{
-			throw new NotImplementedException();
+			_items.Clear();
 		}
 
 		public bool Contains(T item)
