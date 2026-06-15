@@ -57,6 +57,7 @@ namespace GameEngineChecker.Services
 
 						if (!_filter.ShouldTheGameBeProcessed(game))
 						{
+							ReportProgress(reportProgress, i, games);
 							continue;
 						}
 
@@ -64,6 +65,7 @@ namespace GameEngineChecker.Services
 						if (link == null)
 						{
 							_logger.Info($"Could not create PC Gaming Wiki link for game {game.Id} - {game.Name}.");
+							ReportProgress(reportProgress, i, games);
 							continue;
 						}
 
@@ -72,6 +74,7 @@ namespace GameEngineChecker.Services
 						if (engines == null)
 						{
 							_logger.Info($"No engines found for game {game.Id} - {game.Name}.");
+							ReportProgress(reportProgress, i, games);
 							continue;
 						}
 
@@ -79,7 +82,7 @@ namespace GameEngineChecker.Services
 						_tagger.AddEngineTags(game, parsedEngines, cancellationToken);
 
 						addedCount++;
-						reportProgress.Invoke(i * 100f / games.Count);
+						ReportProgress(reportProgress, i, games);
 					}
 				}
 
@@ -89,6 +92,11 @@ namespace GameEngineChecker.Services
 			{
 				return addedCount;
 			}
+		}
+
+		private static void ReportProgress(Action<float> reportProgress, int i, IReadOnlyList<Game> games)
+		{
+			reportProgress.Invoke(i * 100f / games.Count);
 		}
 	}
 }
