@@ -1,5 +1,17 @@
 AddonId: Game_Engine_Checker_7a21243e-c7cc-4ca7-85bd-f6f96f22e9db
 Packages:
+  - Version: 3.0.0
+    RequiredApiVersion: 6.16.0
+    ReleaseDate: 2026-06-15
+    PackageUrl: https://github.com/SparrowBrain/Playnite.GameEngineChecker/releases/download/v3.0.0/Game_Engine_Checker_7a21243e-c7cc-4ca7-85bd-f6f96f22e9db_3_0_0.pext
+    Changelog:
+      - Full re-write in C#
+      - Not calling Steam API for now
+      - Added processing games based on Steam link
+      - Added processing games based on Wikipedia link
+      - Added rate limiting to conform to PcGamingWiki rate limits
+      - Added an optional progress window
+      - Moved messages from message box to notifications
   - Version: 2.13
     RequiredApiVersion: 6.2.2
     ReleaseDate: 2024-05-12
