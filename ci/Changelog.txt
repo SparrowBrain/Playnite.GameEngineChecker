@@ -1,4 +1,4 @@
------------------v3.0.0
+v3.0.0
 - Full re-write in C#
 - Not calling Steam API for now
 - Added processing games based on Steam link
