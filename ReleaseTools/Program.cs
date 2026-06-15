@@ -43,7 +43,7 @@ namespace ReleaseTools
 			RunTests(testRunner, pathToSolution);
 			PackageExtension(toolbox, addonBuildDir, releaseArtifactsDir);
 
-			//CommitAndPush($@"v{changeEntry.Version} extension.yaml and user-agent update");
+			CommitAndPush($@"v{changeEntry.Version} extension.yaml and user-agent update");
 
 			CreateRelease(changeEntry, releaseChangelog, releasePackage);
 
