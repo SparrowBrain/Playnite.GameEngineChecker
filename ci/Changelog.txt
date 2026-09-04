@@ -1,3 +1,6 @@
+------v3.0.1
+- Show error when API returns one
+
 v3.0.0
 - Full re-write in C#
 - Not calling Steam API for now

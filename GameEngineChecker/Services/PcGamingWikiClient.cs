@@ -2,6 +2,7 @@
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Threading;
@@ -33,9 +34,13 @@ namespace GameEngineChecker.Services
 				var request = new HttpRequestMessage(HttpMethod.Get, link);
 				request.Headers.TryAddWithoutValidation("User-Agent", UserAgent);
 
+				var stopwatch = new Stopwatch();
+				stopwatch.Start();
 				var response = await _httpClient.SendAsync(request, cancellationToken);
+				stopwatch.Stop();
+
 				var responseString = await response.Content.ReadAsStringAsync();
-				_logger.Debug($"Response from PC Gaming Wiki: Status: {response.StatusCode}; Body {responseString}");
+				_logger.Debug($"Response from PC Gaming Wiki: Status: {response.StatusCode}; Body {responseString}; Elapsed milliseconds: {stopwatch.ElapsedMilliseconds}");
 
 				response.EnsureSuccessStatusCode();
 				var parsedResponse = _responseParser.Parse(responseString);
