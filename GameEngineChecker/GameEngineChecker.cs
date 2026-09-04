@@ -66,7 +66,8 @@ namespace GameEngineChecker
 			{
 				var gamesFilter = new GamesFilter(PlayniteApi);
 				var pcGamingWikiLinkProvider = new PcGamingWikiLinkProvider();
-				var pcGamingWikiClient = new PcGamingWikiClient(PlayniteApi);
+				var pcGamingWikiResponseParser = new PcGamingWikiResponseParser();
+				var pcGamingWikiClient = new PcGamingWikiClient(PlayniteApi, pcGamingWikiResponseParser);
 				var enginesParser = new EnginesParser();
 
 				var gameEngineCheckerService = new GameEngineCheckerService(

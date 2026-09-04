@@ -2,7 +2,6 @@
 using AutoFixture.AutoFakeItEasy;
 using FakeItEasy;
 using GameEngineChecker.Services;
-using GameEngineChecker.Tests;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using System.Collections.Generic;

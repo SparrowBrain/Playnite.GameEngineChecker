@@ -1,13 +1,13 @@
-﻿using AutoFixture;
-using AutoFixture.AutoFakeItEasy;
-using Playnite.SDK.Models;
-using System;
+﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoFixture;
+using AutoFixture.AutoFakeItEasy;
 using GameEngineChecker.Services;
+using Playnite.SDK.Models;
 using Xunit;
 
-namespace GameEngineChecker.Tests.Services
+namespace GameEngineChecker.UnitTests.Services
 {
 	public class PcGamingWikiLinkProviderTests
 	{

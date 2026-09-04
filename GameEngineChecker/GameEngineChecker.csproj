@@ -52,9 +52,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameEngineChecker.cs" />
+    <Compile Include="Models\Exceptions\ApiErrorException.cs" />
     <Compile Include="Models\PcGamingWiki\CargoQueryItem.cs" />
     <Compile Include="Models\PcGamingWiki\Infobox.cs" />
+    <Compile Include="Models\PcGamingWiki\PcGamingWikiApiError.cs" />
     <Compile Include="Models\PcGamingWiki\PcGamingWikiEngineResponse.cs" />
+    <Compile Include="Models\PcGamingWiki\PcGamingWikiApiErrorResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EnginesParser.cs" />
     <Compile Include="Services\GameEngineCheckerService.cs" />
@@ -65,8 +68,10 @@
     <Compile Include="Interfaces\IPcGamingWikiLinkProvider.cs" />
     <Compile Include="Interfaces\IRateLimiter.cs" />
     <Compile Include="Interfaces\ITagger.cs" />
+    <Compile Include="Interfaces\IPcGamingWikiResponseParser.cs" />
     <Compile Include="Services\PcGamingWikiClient.cs" />
     <Compile Include="Services\PcGamingWikiLinkProvider.cs" />
+    <Compile Include="Services\PcGamingWikiResponseParser.cs" />
     <Compile Include="Services\RateLimiter.cs" />
     <Compile Include="Services\Tagger.cs" />
     <Compile Include="UserAgentConstants.cs" />

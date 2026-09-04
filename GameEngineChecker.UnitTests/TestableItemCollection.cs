@@ -1,11 +1,11 @@
-﻿using Playnite.SDK;
-using Playnite.SDK.Models;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Playnite.SDK;
+using Playnite.SDK.Models;
 
-namespace GameEngineChecker.Tests
+namespace GameEngineChecker.UnitTests
 {
 	internal class TestableItemCollection<T> : IItemCollection<T> where T : DatabaseObject, new()
 	{

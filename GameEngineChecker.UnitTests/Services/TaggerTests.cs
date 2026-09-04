@@ -1,16 +1,16 @@
-﻿using AutoFixture;
-using AutoFixture.AutoFakeItEasy;
-using FakeItEasy;
-using Playnite.SDK;
-using Playnite.SDK.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoFixture;
+using AutoFixture.AutoFakeItEasy;
+using FakeItEasy;
 using GameEngineChecker.Services;
+using Playnite.SDK;
+using Playnite.SDK.Models;
 using Xunit;
 
-namespace GameEngineChecker.Tests.Services
+namespace GameEngineChecker.UnitTests.Services
 {
 	public class TaggerTests
 	{

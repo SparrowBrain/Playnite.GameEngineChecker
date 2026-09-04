@@ -1,6 +1,4 @@
 ﻿using GameEngineChecker.Interfaces;
-using GameEngineChecker.Models.PcGamingWiki;
-using Newtonsoft.Json;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using System;
@@ -15,12 +13,14 @@ namespace GameEngineChecker.Services
 	{
 		private static readonly string UserAgent = $"Playnite.GameEngineChecker Extension {UserAgentConstants.Version} (https://github.com/SparrowBrain/Playnite.GameEngineChecker)";
 		private readonly IPlayniteAPI _api;
+		private readonly IPcGamingWikiResponseParser _responseParser;
 		private readonly ILogger _logger = LogManager.GetLogger();
 		private readonly HttpClient _httpClient;
 
-		public PcGamingWikiClient(IPlayniteAPI api)
+		public PcGamingWikiClient(IPlayniteAPI api, IPcGamingWikiResponseParser responseParser)
 		{
 			_api = api;
+			_responseParser = responseParser;
 			_httpClient = new HttpClient();
 		}
 
@@ -28,6 +28,8 @@ namespace GameEngineChecker.Services
 		{
 			try
 			{
+				// Also log time for debug?
+				_logger.Debug($"Request to PC Gaming Wiki: {link}");
 				var request = new HttpRequestMessage(HttpMethod.Get, link);
 				request.Headers.TryAddWithoutValidation("User-Agent", UserAgent);
 
@@ -36,7 +38,7 @@ namespace GameEngineChecker.Services
 				_logger.Debug($"Response from PC Gaming Wiki: Status: {response.StatusCode}; Body {responseString}");
 
 				response.EnsureSuccessStatusCode();
-				var parsedResponse = ParseResponse(responseString);
+				var parsedResponse = _responseParser.Parse(responseString);
 
 				if (parsedResponse?.CargoQuery?.Count > 1)
 				{
@@ -73,12 +75,6 @@ namespace GameEngineChecker.Services
 		public void Dispose()
 		{
 			_httpClient.Dispose();
-		}
-
-		private PcGamingWikiEngineResponse ParseResponse(string responseContent)
-		{
-			var importResponse = JsonConvert.DeserializeObject<PcGamingWikiEngineResponse>(responseContent);
-			return importResponse;
 		}
 	}
 }

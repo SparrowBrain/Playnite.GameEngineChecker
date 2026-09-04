@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using GameEngineChecker.Services;
 using Xunit;
 
-namespace GameEngineChecker.Tests.Services
+namespace GameEngineChecker.UnitTests.Services
 {
 	public class RateLimiterTests
 	{
