@@ -75,7 +75,12 @@
     <Compile Include="Services\RateLimiter.cs" />
     <Compile Include="Services\Tagger.cs" />
     <Compile Include="UserAgentConstants.cs" />
+    <Compile Include="Models\GameEngineCheckerSettings.cs" />
+    <Compile Include="ViewModels\GameEngineCheckerSettingsViewModel.cs" />
     <Compile Include="ViewModels\ProgressViewModel.cs" />
+    <Compile Include="Views\GameEngineCheckerSettingsView.xaml.cs">
+      <DependentUpon>GameEngineCheckerSettingsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProgressView.xaml.cs">
       <DependentUpon>ProgressView.xaml</DependentUpon>
     </Compile>
@@ -95,6 +100,10 @@
     <Page Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\GameEngineCheckerSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ProgressView.xaml">
       <SubType>Designer</SubType>

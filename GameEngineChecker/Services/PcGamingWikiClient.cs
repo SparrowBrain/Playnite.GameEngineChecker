@@ -29,7 +29,6 @@ namespace GameEngineChecker.Services
 		{
 			try
 			{
-				// Also log time for debug?
 				_logger.Debug($"Request to PC Gaming Wiki: {link}");
 				var request = new HttpRequestMessage(HttpMethod.Get, link);
 				request.Headers.TryAddWithoutValidation("User-Agent", UserAgent);

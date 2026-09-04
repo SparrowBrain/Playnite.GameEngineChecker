@@ -23,13 +23,15 @@ namespace GameEngineChecker
 		private readonly Tagger _tagger;
 		private readonly RateLimiter _rateLimiter;
 
+		private GameEngineCheckerSettingsViewModel _settings;
+
 		public override Guid Id { get; } = Guid.Parse("7a21243e-c7cc-4ca7-85bd-f6f96f22e9db");
 
 		public GameEngineChecker(IPlayniteAPI api) : base(api)
 		{
 			Properties = new GenericPluginProperties
 			{
-				HasSettings = false
+				HasSettings = true
 			};
 			_tagger = new Tagger(PlayniteApi);
 			_rateLimiter = new RateLimiter(PcGamingWikiRateLimitWindow, PcGamingWikiMaxRequestsPerWindow);
@@ -53,6 +55,16 @@ namespace GameEngineChecker
 					}
 				}
 			};
+		}
+
+		public override ISettings GetSettings(bool firstRunSettings)
+		{
+			return _settings ?? (_settings = new GameEngineCheckerSettingsViewModel(this));
+		}
+
+		public override UserControl GetSettingsView(bool firstRunSettings)
+		{
+			return new GameEngineCheckerSettingsView();
 		}
 
 		private async Task AddTagsToGames(IReadOnlyList<Game> games)
