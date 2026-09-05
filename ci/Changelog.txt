@@ -1,4 +1,5 @@
-------v3.0.1
+------v3.1.0
+- Added bot login to call PcGamingWiki (mandatory)
 - Show error when API returns one
 
 v3.0.0

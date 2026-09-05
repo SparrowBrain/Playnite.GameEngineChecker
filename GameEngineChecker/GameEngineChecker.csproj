@@ -53,11 +53,16 @@
   <ItemGroup>
     <Compile Include="GameEngineChecker.cs" />
     <Compile Include="Models\Exceptions\ApiErrorException.cs" />
-    <Compile Include="Models\PcGamingWiki\CargoQueryItem.cs" />
-    <Compile Include="Models\PcGamingWiki\Infobox.cs" />
+    <Compile Include="Models\PcGamingWiki\Cargo\CargoQueryItem.cs" />
+    <Compile Include="Models\PcGamingWiki\Cargo\Infobox.cs" />
+    <Compile Include="Models\PcGamingWiki\Login\LoginResponse.cs" />
+    <Compile Include="Models\PcGamingWiki\Login\PcGamingWikiLoginResponse.cs" />
+    <Compile Include="Models\PcGamingWiki\Token\PcGamingWikiTokenResponse.cs" />
     <Compile Include="Models\PcGamingWiki\PcGamingWikiApiError.cs" />
-    <Compile Include="Models\PcGamingWiki\PcGamingWikiEngineResponse.cs" />
+    <Compile Include="Models\PcGamingWiki\Cargo\PcGamingWikiEngineResponse.cs" />
     <Compile Include="Models\PcGamingWiki\PcGamingWikiApiErrorResponse.cs" />
+    <Compile Include="Models\PcGamingWiki\Token\Query.cs" />
+    <Compile Include="Models\PcGamingWiki\Token\Tokens.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EnginesParser.cs" />
     <Compile Include="Services\GameEngineCheckerService.cs" />

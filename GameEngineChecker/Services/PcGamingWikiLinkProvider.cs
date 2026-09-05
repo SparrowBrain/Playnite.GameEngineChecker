@@ -9,7 +9,7 @@ namespace GameEngineChecker.Services
 {
 	public class PcGamingWikiLinkProvider : IPcGamingWikiLinkProvider
 	{
-		private const string UrlBase = "https://www.pcgamingwiki.com/w/api.php?action=cargoquery&format=json&tables=Infobox_game&fields=Engines,_pageName=title&where=";
+		private const string UrlBase = "https://www.pcgamingwiki.com/w/api.php?action=cargoquery&format=json&tables=Game&fields=Engines,_pageName=title&where=";
 		private readonly Regex _steamLinkRegex = new Regex(@"store\.steampowered\.com/app/(?<appId>\d+)", RegexOptions.Compiled);
 		private readonly Regex _wikipediaLinkRegex = new Regex(@"wikipedia\.org/wiki/(?<pageName>[^/]+)", RegexOptions.Compiled);
 

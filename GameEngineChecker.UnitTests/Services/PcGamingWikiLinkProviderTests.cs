@@ -33,7 +33,7 @@ namespace GameEngineChecker.UnitTests.Services
 			var result = await _sut.GetLink(game, CancellationToken.None);
 
 			// Assert
-			Assert.Equal(new Uri($@"https://www.pcgamingwiki.com/w/api.php?action=cargoquery&format=json&tables=Infobox_game&fields=Engines,_pageName=title&where=Steam_AppID HOLDS ""{game.GameId}"""), result);
+			Assert.Equal(new Uri($@"https://www.pcgamingwiki.com/w/api.php?action=cargoquery&format=json&tables=Game&fields=Engines,_pageName=title&where=Steam_AppID HOLDS ""{game.GameId}"""), result);
 		}
 
 		[Theory]
@@ -49,7 +49,7 @@ namespace GameEngineChecker.UnitTests.Services
 			var result = await _sut.GetLink(game, CancellationToken.None);
 
 			// Assert
-			Assert.Equal(new Uri($@"https://www.pcgamingwiki.com/w/api.php?action=cargoquery&format=json&tables=Infobox_game&fields=Engines,_pageName=title&where=GOGcom_ID HOLDS ""{game.GameId}"""), result);
+			Assert.Equal(new Uri($@"https://www.pcgamingwiki.com/w/api.php?action=cargoquery&format=json&tables=Game&fields=Engines,_pageName=title&where=GOGcom_ID HOLDS ""{game.GameId}"""), result);
 		}
 
 		[Theory]
@@ -65,7 +65,7 @@ namespace GameEngineChecker.UnitTests.Services
 			var result = await _sut.GetLink(game, CancellationToken.None);
 
 			// Assert
-			Assert.Equal(new Uri($@"https://www.pcgamingwiki.com/w/api.php?action=cargoquery&format=json&tables=Infobox_game&fields=Engines,_pageName=title&where=Steam_AppID HOLDS ""3634520"""), result);
+			Assert.Equal(new Uri($@"https://www.pcgamingwiki.com/w/api.php?action=cargoquery&format=json&tables=Game&fields=Engines,_pageName=title&where=Steam_AppID HOLDS ""3634520"""), result);
 		}
 
 		[Theory]
@@ -81,7 +81,7 @@ namespace GameEngineChecker.UnitTests.Services
 			var result = await _sut.GetLink(game, CancellationToken.None);
 
 			// Assert
-			Assert.Equal(new Uri($@"https://www.pcgamingwiki.com/w/api.php?action=cargoquery&format=json&tables=Infobox_game&fields=Engines,_pageName=title&where=Wikipedia=""Need for Speed III: Hot Pursuit"""), result);
+			Assert.Equal(new Uri($@"https://www.pcgamingwiki.com/w/api.php?action=cargoquery&format=json&tables=Game&fields=Engines,_pageName=title&where=Wikipedia=""Need for Speed III: Hot Pursuit"""), result);
 		}
 
 		[Fact]

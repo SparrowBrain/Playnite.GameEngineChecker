@@ -1,4 +1,4 @@
-﻿namespace GameEngineChecker.Models.PcGamingWiki
+﻿namespace GameEngineChecker.Models.PcGamingWiki.Cargo
 {
 	public class Infobox
 	{

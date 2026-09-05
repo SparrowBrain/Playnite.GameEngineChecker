@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GameEngineChecker.Models.PcGamingWiki
+namespace GameEngineChecker.Models.PcGamingWiki.Cargo
 {
 	public class PcGamingWikiEngineResponse
 	{
