@@ -2,7 +2,6 @@
 using GameEngineChecker.Models;
 using Playnite.SDK;
 using Playnite.SDK.Models;
-using Playnite.SDK.WebViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -38,56 +37,37 @@ namespace GameEngineChecker.Services
 
 		public async Task<string> GetEngines(Uri link, Game game, CancellationToken cancellationToken)
 		{
-			try
+			await EnsureLoggedIn(cancellationToken);
+
+			_logger.Debug($"Request to PC Gaming Wiki: {link}");
+			var request = new HttpRequestMessage(HttpMethod.Get, link);
+			request.Headers.TryAddWithoutValidation("User-Agent", UserAgent);
+
+			var stopwatch = new Stopwatch();
+			stopwatch.Start();
+			var response = await _httpClient.SendAsync(request, cancellationToken);
+			stopwatch.Stop();
+
+			var responseString = await response.Content.ReadAsStringAsync();
+			_logger.Debug($"Response from PC Gaming Wiki: Status: {response.StatusCode}; Body {responseString}; Elapsed milliseconds: {stopwatch.ElapsedMilliseconds:N}");
+
+			response.EnsureSuccessStatusCode();
+			var parsedResponse = _responseParser.ParseCargo(responseString);
+
+			if (parsedResponse?.CargoQuery?.Count > 1)
 			{
-				await EnsureLoggedIn(cancellationToken);
-
-				_logger.Debug($"Request to PC Gaming Wiki: {link}");
-				var request = new HttpRequestMessage(HttpMethod.Get, link);
-				request.Headers.TryAddWithoutValidation("User-Agent", UserAgent);
-
-				var stopwatch = new Stopwatch();
-				stopwatch.Start();
-				var response = await _httpClient.SendAsync(request, cancellationToken);
-				stopwatch.Stop();
-
-				var responseString = await response.Content.ReadAsStringAsync();
-				_logger.Debug($"Response from PC Gaming Wiki: Status: {response.StatusCode}; Body {responseString}; Elapsed milliseconds: {stopwatch.ElapsedMilliseconds:N}");
-
-				response.EnsureSuccessStatusCode();
-				var parsedResponse = _responseParser.ParseCargo(responseString);
-
-				if (parsedResponse?.CargoQuery?.Count > 1)
-				{
-					var foundEntries = string.Join(", ", parsedResponse.CargoQuery.Select(x => $"\"{x.Title?.Title}\""));
-					_logger.Info($"Multiple PC Gaming Wiki entries found for game {game.Id} - {game.Name}: {foundEntries}. Skipping.");
-					return null;
-				}
-
-				var engines = parsedResponse?.CargoQuery?.FirstOrDefault()?.Title?.Engines;
-				if (engines == null)
-				{
-					_logger.Debug($"No engines found in response: {responseString}");
-				}
-
-				return engines;
-			}
-			catch (Exception ex)
-			{
-				// Do something about this. Should stop the flow if exception
-				if (!(ex is OperationCanceledException))
-				{
-					_logger.Error(ex, $"Error while getting engines via {link}");
-					_api.Notifications.Add("game_engine_checker__pcgw_error_message",
-						string.Format(
-							ResourceProvider.GetString("LOCGame_Engine_Checker_PcgwDownloadErrorMessage"),
-							game.Name,
-							ex.Message),
-						NotificationType.Error);
-				}
-
+				var foundEntries = string.Join(", ", parsedResponse.CargoQuery.Select(x => $"\"{x.Title?.Title}\""));
+				_logger.Info($"Multiple PC Gaming Wiki entries found for game {game.Id} - {game.Name}: {foundEntries}. Skipping.");
 				return null;
 			}
+
+			var engines = parsedResponse?.CargoQuery?.FirstOrDefault()?.Title?.Engines;
+			if (engines == null)
+			{
+				_logger.Debug($"No engines found in response: {responseString}");
+			}
+
+			return engines;
 		}
 
 		private async Task EnsureLoggedIn(CancellationToken cancellationToken)

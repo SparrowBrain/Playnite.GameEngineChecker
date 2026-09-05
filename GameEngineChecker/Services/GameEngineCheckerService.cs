@@ -43,6 +43,7 @@ namespace GameEngineChecker.Services
 			CancellationToken cancellationToken)
 		{
 			var addedCount = 0;
+			var currentGameName = string.Empty;
 			try
 			{
 				using (var _ = _api.Database.BufferedUpdate())
@@ -50,6 +51,7 @@ namespace GameEngineChecker.Services
 					for (var i = 0; i < games.Count; i++)
 					{
 						var game = games[i];
+						currentGameName = game.Name;
 						if (cancellationToken.IsCancellationRequested)
 						{
 							return addedCount;
@@ -90,6 +92,18 @@ namespace GameEngineChecker.Services
 			}
 			catch (OperationCanceledException)
 			{
+				return addedCount;
+			}
+			catch (Exception ex)
+			{
+				_logger.Error(ex, "Error while getting engines");
+				_api.Notifications.Add("game_engine_checker__pcgw_error_message",
+					string.Format(
+						ResourceProvider.GetString("LOCGame_Engine_Checker_PcgwDownloadErrorMessage"),
+						currentGameName,
+						ex.Message),
+					NotificationType.Error);
+
 				return addedCount;
 			}
 		}
