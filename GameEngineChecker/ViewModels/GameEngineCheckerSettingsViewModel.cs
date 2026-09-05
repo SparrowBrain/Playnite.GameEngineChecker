@@ -51,6 +51,7 @@ namespace GameEngineChecker.ViewModels
 			// Code execute when user decides to confirm changes made since BeginEdit was called.
 			// Executed before EndEdit is called and EndEdit is not called if false is returned.
 			// List of errors is presented to user if verification fails.
+
 			errors = new List<string>();
 			return true;
 		}

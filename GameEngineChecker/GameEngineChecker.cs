@@ -16,6 +16,8 @@ namespace GameEngineChecker
 {
 	public class GameEngineChecker : GenericPlugin
 	{
+		public const string PluginId = "7a21243e-c7cc-4ca7-85bd-f6f96f22e9db";
+
 		private const string ExtensionName = "Game Engine Checker";
 		private const int PcGamingWikiMaxRequestsPerWindow = 30;
 		private static readonly TimeSpan PcGamingWikiRateLimitWindow = TimeSpan.FromSeconds(60);
@@ -25,7 +27,7 @@ namespace GameEngineChecker
 
 		private GameEngineCheckerSettingsViewModel _settings;
 
-		public override Guid Id { get; } = Guid.Parse("7a21243e-c7cc-4ca7-85bd-f6f96f22e9db");
+		public override Guid Id { get; } = Guid.Parse(PluginId);
 
 		public GameEngineChecker(IPlayniteAPI api) : base(api)
 		{
@@ -86,6 +88,7 @@ namespace GameEngineChecker
 
 				var gameEngineCheckerService = new GameEngineCheckerService(
 					PlayniteApi,
+					_settings.Settings,
 					gamesFilter,
 					_rateLimiter,
 					pcGamingWikiLinkProvider,

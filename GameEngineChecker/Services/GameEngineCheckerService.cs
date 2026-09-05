@@ -1,8 +1,10 @@
 ﻿using GameEngineChecker.Interfaces;
+using GameEngineChecker.Models;
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using System;
 using System.Collections.Generic;
+using System.Security.Authentication;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -12,6 +14,7 @@ namespace GameEngineChecker.Services
 	{
 		private readonly ILogger _logger = LogManager.GetLogger();
 		private readonly IPlayniteAPI _api;
+		private readonly GameEngineCheckerSettings _settings;
 		private readonly IGamesFilter _filter;
 		private readonly IRateLimiter _rateLimiter;
 		private readonly IPcGamingWikiLinkProvider _linkProvider;
@@ -21,6 +24,7 @@ namespace GameEngineChecker.Services
 
 		public GameEngineCheckerService(
 			IPlayniteAPI api,
+			GameEngineCheckerSettings settings,
 			IGamesFilter filter,
 			IRateLimiter rateLimiter,
 			IPcGamingWikiLinkProvider linkProvider,
@@ -29,6 +33,7 @@ namespace GameEngineChecker.Services
 			ITagger tagger)
 		{
 			_api = api;
+			_settings = settings;
 			_filter = filter;
 			_rateLimiter = rateLimiter;
 			_linkProvider = linkProvider;
@@ -46,6 +51,12 @@ namespace GameEngineChecker.Services
 			var currentGameName = string.Empty;
 			try
 			{
+				if (string.IsNullOrWhiteSpace(_settings.BotLogin)
+					|| string.IsNullOrWhiteSpace(_settings.BotPassword))
+				{
+					throw new AuthenticationException("Missing authentication credentials.");
+				}
+
 				using (var _ = _api.Database.BufferedUpdate())
 				{
 					for (var i = 0; i < games.Count; i++)
@@ -92,6 +103,18 @@ namespace GameEngineChecker.Services
 			}
 			catch (OperationCanceledException)
 			{
+				return addedCount;
+			}
+			catch (AuthenticationException ex)
+			{
+				_logger.Info(ex, "Missing user credentials.");
+				var message = new NotificationMessage(
+					"game_engine_checker__pcgw_error_message",
+					ResourceProvider.GetString("LOCGame_Engine_Checker_MissingAuthCredentials"),
+					NotificationType.Error,
+					() => _api.MainView.OpenPluginSettings(Guid.Parse(GameEngineChecker.PluginId))
+				);
+				_api.Notifications.Add(message);
 				return addedCount;
 			}
 			catch (Exception ex)
