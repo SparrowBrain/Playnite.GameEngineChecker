@@ -4,8 +4,24 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:GameEngineChecker.Views"
+             xmlns:infrastructure="clr-namespace:GameEngineChecker.Infrastructure"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+            <Setter Property="Margin" Value="0,5,5,0" />
+            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Margin" Value="5,0,5,0"></Setter>
+        </Style>
+        <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="Margin" Value="2.5,2.5,2.5,2.5"></Setter>
+        </Style>
+        <Style TargetType="PasswordBox" BasedOn="{StaticResource {x:Type PasswordBox}}">
+            <Setter Property="Margin" Value="2.5,2.5,2.5,2.5"></Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -26,8 +42,8 @@
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource LOCGame_Engine_Checker_SettingsBotLogin}"></TextBlock>
                     <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Settings.BotLogin}"></TextBox>
                     <TextBlock Grid.Row="1" Grid.Column="0" Text="{DynamicResource LOCGame_Engine_Checker_SettingsBotPassword}"></TextBlock>
-                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Settings.BotPassword}"></TextBox>
-                    <Button Grid.Row="2" Grid.Column="1" Content="{DynamicResource LOCGame_Engine_Checker_SettingsCreateBotPassword}" Command="{Binding GenerateToken}"></Button>
+                    <PasswordBox Grid.Row="1" Grid.Column="1" infrastructure:PasswordBoxAssistant.BindPassword="True" infrastructure:PasswordBoxAssistant.BoundPassword="{Binding Path=Settings.BotPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></PasswordBox>
+                    <Button Grid.Row="2" Grid.Column="1" Content="{DynamicResource LOCGame_Engine_Checker_SettingsCreateBotPassword}" Command="{Binding CreateBotPassword}"></Button>
                 </Grid>
             </ScrollViewer>
         </GroupBox>
