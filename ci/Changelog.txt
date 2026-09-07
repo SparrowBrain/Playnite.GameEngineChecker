@@ -4,6 +4,7 @@
 - API error now stops the flow
 - Added auto-update after library update
 - Added Lithuanian language
+- Added additional Hungarian translations (thanks ABalintt!)
 
 v3.0.0
 - Full re-write in C#
