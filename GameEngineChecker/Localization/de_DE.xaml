@@ -4,9 +4,14 @@
     <sys:String x:Key="LOCGame_Engine_Checker_ProgressHide">Hide</sys:String>
     <sys:String x:Key="LOCGame_Engine_Checker_ProgressTitle">Adding game engine tags...</sys:String>
     <sys:String x:Key="LOCGame_Engine_Checker_MenuItemAddTagSelectedGamesDescription">Spiele Engine Tag zu ausgewähltem(n) Spiel(en) hinzufügen</sys:String>
+    <sys:String x:Key="LOCGame_Engine_Checker_MissingAuthCredentials">Missing authentication credentials.</sys:String>
     <sys:String x:Key="LOCGame_Engine_Checker_PcgwDownloadErrorMessage">Spieleinformation zu &quot;{0}&quot; konnte nicht von PCGW heruntergeladen werden. Fehler: {1}</sys:String>
     <sys:String x:Key="LOCGame_Engine_Checker_ResultsMessage" xml:space="preserve">Engine Tag zu {0} Spiel(en) hinzugefügt.</sys:String>
     <sys:String x:Key="LOCGame_Engine_Checker_ResultsErrorMessage" xml:space="preserve">Failure while adding engines to games: {0}
 {1}</sys:String>
-    <sys:String x:Key="LOCGame_Engine_Checker_SteamAppListDownloadErrorMessage">Fehler beim Herunterladen der Steam AppList Datenbank. Fehler:{0}</sys:String>
+    <sys:String x:Key="LOCGame_Engine_Checker_SettingsAuthenticationGroupTitle">Authentication</sys:String>
+    <sys:String x:Key="LOCGame_Engine_Checker_SettingsCreateBotPassword">Create Bot Password</sys:String>
+    <sys:String x:Key="LOCGame_Engine_Checker_SettingsBotLogin">Bot Login</sys:String>
+    <sys:String x:Key="LOCGame_Engine_Checker_SettingsBotPassword">Bot Password</sys:String>
+    <sys:String x:Key="LOCGame_Engine_Checker_SettingsUpdateImportedGames">Automatically update imported games</sys:String>
 </ResourceDictionary>
