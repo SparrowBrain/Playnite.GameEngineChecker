@@ -25,6 +25,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <GroupBox Grid.Row="0" Header="{DynamicResource LOCGame_Engine_Checker_SettingsAuthenticationGroupTitle}">
@@ -47,5 +48,6 @@
                 </Grid>
             </ScrollViewer>
         </GroupBox>
+        <CheckBox Grid.Row="1" IsChecked="{Binding Settings.UpdateImportedGames}" Content ="{DynamicResource LOCGame_Engine_Checker_SettingsUpdateImportedGames}"></CheckBox>
     </Grid>
 </UserControl>

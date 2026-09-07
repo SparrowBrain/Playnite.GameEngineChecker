@@ -2,6 +2,7 @@
 - Added bot login to call PcGamingWiki (mandatory)
 - Show error when API returns one
 - API error now stops the flow
+- Added auto-update after library update
 
 v3.0.0
 - Full re-write in C#

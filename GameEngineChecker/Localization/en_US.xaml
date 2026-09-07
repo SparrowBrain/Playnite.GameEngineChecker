@@ -13,5 +13,6 @@ Added engine tag to {0} game(s).</sys:String>
     <sys:String x:Key="LOCGame_Engine_Checker_SettingsCreateBotPassword">Create Bot Password</sys:String>
     <sys:String x:Key="LOCGame_Engine_Checker_SettingsBotLogin">Bot Login</sys:String>
     <sys:String x:Key="LOCGame_Engine_Checker_SettingsBotPassword">Bot Password</sys:String>
+    <sys:String x:Key="LOCGame_Engine_Checker_SettingsUpdateImportedGames">Automatically update imported games</sys:String>
     <sys:String x:Key="LOCGame_Engine_Checker_SteamAppListDownloadErrorMessage">Error downloading Steam AppList database. Error: {0}</sys:String>
 </ResourceDictionary>

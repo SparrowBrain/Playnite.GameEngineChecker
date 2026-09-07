@@ -110,6 +110,7 @@
     <Compile Include="Services\GamesFilterTests.cs" />
     <Compile Include="Services\PcGamingWikiLinkProviderTests.cs" />
     <Compile Include="Services\PcGamingWikiResponseParserTests.cs" />
+    <Compile Include="Services\PersistentProcessingQueueTests.cs" />
     <Compile Include="Services\RateLimiterTests.cs" />
     <Compile Include="Services\TaggerTests.cs" />
     <Compile Include="TestableItemCollection.cs" />

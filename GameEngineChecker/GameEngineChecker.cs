@@ -2,10 +2,12 @@
 using GameEngineChecker.ViewModels;
 using GameEngineChecker.Views;
 using Playnite.SDK;
+using Playnite.SDK.Events;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -19,11 +21,13 @@ namespace GameEngineChecker
 		public const string PluginId = "7a21243e-c7cc-4ca7-85bd-f6f96f22e9db";
 
 		private const string ExtensionName = "Game Engine Checker";
+		private const string QueueFileName = "queue.json";
 		private const int PcGamingWikiMaxRequestsPerWindow = 30;
 		private static readonly TimeSpan PcGamingWikiRateLimitWindow = TimeSpan.FromSeconds(60);
 		private static readonly ILogger Logger = LogManager.GetLogger();
 		private readonly Tagger _tagger;
 		private readonly RateLimiter _rateLimiter;
+		private readonly PersistentProcessingQueue _persistentProcessingQueue;
 
 		private GameEngineCheckerSettingsViewModel _settings;
 
@@ -37,6 +41,22 @@ namespace GameEngineChecker
 			};
 			_tagger = new Tagger(PlayniteApi);
 			_rateLimiter = new RateLimiter(PcGamingWikiRateLimitWindow, PcGamingWikiMaxRequestsPerWindow);
+			_persistentProcessingQueue = new PersistentProcessingQueue(
+				new QueuePersistence(Path.Combine(GetPluginUserDataPath(), QueueFileName)),
+				gameIds =>
+				{
+					var games = api.Database.Games.Where(x => gameIds.Contains(x.Id)).ToList();
+					return AddTagsToGames(games);
+				});
+
+			PlayniteApi.Database.Games.ItemCollectionChanged += async (_, gamesAddedArgs) =>
+			{
+				GetSettings(false);
+				if (_settings.Settings.UpdateImportedGames)
+				{
+					await _persistentProcessingQueue.Enqueue(gamesAddedArgs.AddedItems.Select(x => x.Id).ToList());
+				}
+			};
 		}
 
 		public override IEnumerable<MainMenuItem> GetMainMenuItems(GetMainMenuItemsArgs args)
@@ -67,6 +87,11 @@ namespace GameEngineChecker
 		public override UserControl GetSettingsView(bool firstRunSettings)
 		{
 			return new GameEngineCheckerSettingsView();
+		}
+
+		public override void OnLibraryUpdated(OnLibraryUpdatedEventArgs args)
+		{
+			_persistentProcessingQueue.ProcessInBackground();
 		}
 
 		private async Task AddTagsToGames(IReadOnlyList<Game> games)
